@@ -1,0 +1,9 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}About us{% endblock %}
+
+{% block body_block %}
+	<p>This website was made for sharing dumb code</p>
+	<a href="{% url 'main:home' %}">Home</a>
+{% endblock %}

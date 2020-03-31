@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>
+			{% block title_block %}
+			{% endblock %}
+		</title>
+	</head>
+	</body>
+		<div>
+			{% block header_block %}
+				<a href="{% url 'main:home' %}">
+					<img src="{% static 'images/samplelogo.jpg' %}" alt="Home" height="200" width="200" />
+				</a>
+			{% endblock %}
+		</div>
+		<div>
+			{% block body_block %}
+				<p>Empty body block</p>
+			{% endblock %}
+		</div>
+		<div>
+			{% block footer_block %}
+				<a href="{% url 'main:about' %}">About us</a>
+				<a href="{% url 'main:contact' %}">Contact us</a>
+			{% endblock %}
+		</div>
+	</body>
+</html>
