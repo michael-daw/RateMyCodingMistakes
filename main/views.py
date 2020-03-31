@@ -12,3 +12,7 @@ def about(request):
 def contact(request):
     response = render(request, 'main/contact.html')
     return response
+    
+def base(request):
+    response = render(request, 'main/base.html')
+    return response

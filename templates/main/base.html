@@ -4,28 +4,37 @@
 <html>
 	<head lang="en">
 		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}" />
 		<title>
 			{% block title_block %}
+				Base
 			{% endblock %}
 		</title>
 	</head>
 	</body>
-		<div>
+		<div class="header">
 			{% block header_block %}
 				<a href="{% url 'main:home' %}">
-					<img src="{% static 'images/samplelogo.jpg' %}" alt="Home" height="200" width="200" />
+					<img src="{% static 'images/samplelogo.jpg' %}" alt="Home" id="logo" />
 				</a>
+				<ul>
+					<li>Words</li>
+					<li>Words</li>
+					<li>words</li>
+				</ul>
 			{% endblock %}
 		</div>
-		<div>
+		<div class="body">
 			{% block body_block %}
 				<p>Empty body block</p>
 			{% endblock %}
 		</div>
-		<div>
+		<div class="footer">
 			{% block footer_block %}
-				<a href="{% url 'main:about' %}">About us</a>
-				<a href="{% url 'main:contact' %}">Contact us</a>
+				<ul class="footer_links">
+					<li><a href="{% url 'main:about' %}">About us</a></li>
+					<li><a href="{% url 'main:contact' %}">Contact us</a></li>
+				</ul>
 			{% endblock %}
 		</div>
 	</body>
