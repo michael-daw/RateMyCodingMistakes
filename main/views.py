@@ -109,7 +109,7 @@ def new(request):
     return response
 
 def show_categories(request):
-    category_list = Category.objects.order_by(name)
+    category_list = Category.objects.order_by('name')
     post_list = Post.objects.order_by('-rating')[:3]
             
     context_dict = {}
