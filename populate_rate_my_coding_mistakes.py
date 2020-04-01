@@ -58,7 +58,7 @@ def populate():
                 add_post(c, p['title'], p['body'], p['op'], p['rating'])
 
     for c in Category.objects.all():
-        for p in Page.objects.filter(category=c):
+        for p in Post.objects.filter(category=c):
             print(f'- {c}: {p}')
 
 def add_post(cat,title,body,op,rating=0):
