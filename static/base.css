@@ -1,0 +1,51 @@
+#logo{
+	margin-left: -250px;
+	margin-top: -50px;
+	height: 175px;
+	width: 175px;
+}
+
+.footer {
+	margin-left: 50px;
+	margin-right: 50px;
+	border: 2px solid black;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+.body {
+	margin-left: 125px;
+	margin-right: 125px;
+	margin-bottom: 100px
+}
+
+.header {
+	margin-top: 100px;
+	margin-right: 75px;
+	margin-left: 300px;
+	margin-bottom: 100px;
+	border: 2px solid black;
+}
+
+.header ul {
+	list-style-type: none;
+	margin-top: -100px;
+	margin-bottom: 25px;
+	margin-left: 50px;
+}
+
+.header li {
+	margin: 50px;
+	display: inline;
+}
+
+.footer_links {
+	list-style-type: none;
+}
+
+.footer_links li {
+	margin: 50px;
+	display: inline;
+}
