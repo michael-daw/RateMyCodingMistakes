@@ -28,14 +28,14 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=TITLE_MAX_LENGTH)
     body = models.CharField(max_length=POST_MAX_LENGTH)
-    op = models.ForeignKey(User, on_delete=models.CASCADE)
+    op = models.ForeignKey('UserProfile', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='post_images', blank=True)
     date = models.DateTimeField(default=datetime.now)
     rating = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
     
     def save(self, *args, **kwargs):
-        self.slug - slugify(self.name)
+        self.slug = slugify(self.title)
         super(Post, self).save(*args, **kwargs)
     
     class Meta:
