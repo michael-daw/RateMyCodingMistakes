@@ -18,9 +18,15 @@
 					<img src="{% static 'images/samplelogo.jpg' %}" alt="Home" id="logo" />
 				</a>
 				<ul>
-					<li>Words</li>
-					<li>Words</li>
-					<li>words</li>
+					<li><a href="{% url 'main:hot' %}">Posts by Hot</a></li>
+					<li><a href="{% url 'main:new' %}">Posts by New</a></li>
+					<li><a href="{% url 'main:alltime' %}">All Time Best Posts</a></li>
+					<li><a href="{% url 'main:categories' %}">Posts by other categories</a></li>
+					{% if user.is_authenticated %}
+						<li><a href="{% url 'main:account' %}">Account</a></li>
+					{% else %}
+						<li><a href="{% url 'main:login' %}">Log in</a></li>
+					{% endif %}
 				</ul>
 			{% endblock %}
 		</div>
@@ -34,6 +40,7 @@
 				<ul class="footer_links">
 					<li><a href="{% url 'main:about' %}">About us</a></li>
 					<li><a href="{% url 'main:contact' %}">Contact us</a></li>
+					<li><a href="{% url 'main:sitemap' %}">Sitemap</a></li>
 				</ul>
 			{% endblock %}
 		</div>
