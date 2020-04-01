@@ -4,7 +4,15 @@
 {% block title_block %}Login!{% endblock %}
 
 {% block body_block %}
-	words
+	Log in:
+	<form id="login_form" method="post" action="{% url 'rango:login' %}">
+		{% csrf_token %}
+		Username: <input type="text" name="username" value="" size="50" />
+		<br />
+		Password: <input type="password" name="password" value="" size="50" />
+		<br />
+		<input type="submit" value="submit" />
+	</form>
 	
 	<p>Don't have an account? <a href="{% url 'main:register' %}">Sign up now</a></p>
 {% endblock %}
