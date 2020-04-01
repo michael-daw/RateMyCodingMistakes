@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from rateMyCodingMistakes.models import Post, Category
+from main.forms import UserForm, UserProfileForm
+from main.models import Post, Category
 from django.shortcuts import redirect
 from django.urls import reverse
 
@@ -55,9 +56,6 @@ def user_login(request):
     else:
         return render(request, 'rateMyCodingMistakes/login.html')
     
-    response = render(request, 'main/login.html')
-    return response
-    
 @login_required
 def user_logout(request):
     logout(request)
@@ -86,6 +84,7 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
     
+    context_dict={}
     context_dict['user_form'] = user_form
     context_dict['profile_form'] =  profile_form
     context_dict['registered'] = registered
@@ -93,7 +92,6 @@ def register(request):
     response = render(request, 'main/signup.html', context_dict)
     return response
 
-'''''''''''''''
 def hot(request):
     context_dict = {'category':'Hot'}
     response = render(request, 'main/category.html', context=context_dict)
@@ -108,7 +106,7 @@ def new(request):
     context_dict = {'category':'New'}
     response = render(request, 'main/category.html', context=context_dict)
     return response
- '''''''''''''''
+
 def show_categories(request):
     category_list = Category.objects.order_by(name)
     post_list = Post.objects.order_by('-rating')[:3]

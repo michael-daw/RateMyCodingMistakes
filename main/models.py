@@ -49,13 +49,17 @@ class Comment(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    
+    '''
     #subclass enum for choice of two experience types - student and professional
-    class ExpChoice(enum.Enum):
+    class ExpChoice(models.TextChoices):
         STUDENT = 'STU'
         PROFESSIONAL = 'PRO'
+    '''
+    STUDENT = 'STU'
+    PROFESSIONAL = 'PRO'
     
-    experience = models.CharField(max_length=3, choices=[(tag, tag.value) for tag in ExpChoice])
+    ExpChoice = [(STUDENT, 'Student'),(PROFESSIONAL, 'Professional')]
+    experience = models.CharField(max_length=3, choices=ExpChoice, default=STUDENT)
     
     def __str__(self):
         return self.user.username
