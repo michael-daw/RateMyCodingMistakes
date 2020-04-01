@@ -22,22 +22,30 @@ class Category(models.Model):
     
 class Post(models.Model):
 
-    TITLE_MAX_LENGTH = 128
-    POST_MAX_LENGTH = 1280
+    TITLE_MAX_LENGTH = 32
+    POST_MAX_LENGTH = 240
     
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=TITLE_MAX_LENGTH)
-    body = models.CharField(max_length=TITLE_MAX_LENGTH)
+    body = models.CharField(max_length=POST_MAX_LENGTH)
     op = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='post_images', blank=True)
     date = models.DateTimeField(default=datetime.now)
     rating = models.IntegerField(default=0)
+    slug = models.SlugField(unique=True)
+    
+    def save(self, *args, **kwargs):
+        self.slug - slugify(self.name)
+        super(Post, self).save(*args, **kwargs)
+    
+    class Meta:
+        verbose_name_plural = 'posts'
     
     def __str__(self):
         return self.body
         
 class Comment(models.Model):
-    pass #Add time
+    pass
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
