@@ -6,10 +6,11 @@ from main.forms import UserForm, UserProfileForm
 from main.models import Post, Category
 from django.shortcuts import redirect
 from django.urls import reverse
+from datetime import datetime
 
 # Create your views here.
 def home(request):
-    post_list = Post.object.order_by('-rating')
+    post_list = Post.objects.order_by('-rating')
     context_dict = {}
     context_dict['posts'] = post_list
     
