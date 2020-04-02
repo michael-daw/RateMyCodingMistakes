@@ -18,27 +18,33 @@ def home(request):
     
     response = render(request, 'main/home.html', context_dict)
     return response
-    
+   
+'''
+Following functions deal with basic webpages - ie no models need accessed, only html page needs displayed
+'''
+   
 def about(request):
-    context_dict = {}
-    context_dict['boldmessage'] = 'A place where programmers of all levels can collectively face-palm'
-    response = render(request, 'main/about.html', context_dict)
+    response = render(request, 'main/about.html')
     return response
     
 def contact(request):
     response = render(request, 'main/contact.html')
     return response
     
-def base(request):
-    response = render(request, 'main/base.html')
+def sitemap(request):
+    response = render(request, 'main/sitemap.html')
     return response
+
+'''
+Following functions deal with user authentication and actions
+'''
 
 @login_required
 def account(request):
     context_dict = {}
     try:
         logged_in_user = request.user
-        posts = Post.objects.filter(user=logged_in_user).order_by('-date')
+        posts = Post.objects.filter(op=logged_in_user).order_by('-date')
         context_dict['posts'] = posts
         
     except Post.DoesNotExist:
@@ -102,6 +108,13 @@ def register(request):
     response = render(request, 'main/signup.html', context_dict)
     return response
 
+'''
+Following 3 functions deal with displaying a subset of posts depending on which style
+alltime shows highest rated posts
+new shows more recently made posts
+hot shows highest rated posts over a period of 2 days
+'''
+
 def hot(request):
     post_list = Post.objects.filter(date__range=[datetime.now()-timedelta(days=2), datetime.now()]).order_by('-rating')
     context_dict = {'category':'Hot', 'posts':post_list}
@@ -119,6 +132,11 @@ def new(request):
     context_dict = {'category':'New', 'posts':post_list}
     response = render(request, 'main/category.html', context=context_dict)
     return response
+    
+'''
+Following functions deal with showing a list of categories the posts 
+may be, and then displaying a list of posts in that category
+'''
 
 def show_categories(request):
     category_list = Category.objects.order_by('name')
@@ -148,9 +166,9 @@ def show_category(request, category_name_slug):
     response = render(request, 'main/category.html', context_dict)
     return response
     
-def sitemap(request):
-    response = render(request, 'main/sitemap.html')
-    return response
+'''
+Following functions deal with cookie handling
+'''
 
 def get_server_side_cookie(request, cookie, default_val=None):
     val = request.session.get(cookie)
