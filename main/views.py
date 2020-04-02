@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from main.forms import UserForm, UserProfileForm
-from main.models import Post, Category
+from main.models import Post, Category, UserProfile
 from django.shortcuts import redirect
 from django.urls import reverse
 from datetime import datetime, timedelta
@@ -35,7 +35,16 @@ def base(request):
 
 @login_required
 def account(request):
-    response = render(request, 'main/account.html')
+    context_dict = {}
+    try:
+        logged_in_user = request.user
+        posts = Post.objects.filter(user=logged_in_user).order_by('-date')
+        context_dict['posts'] = posts
+        
+    except Post.DoesNotExist:
+        context_dict['posts'] = None
+        
+    response = render(request, 'main/account.html', context_dict)
     return response
  
 def user_login(request):
