@@ -48,14 +48,14 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return redirect(reverse('rateMyCodingMistakes:index'))
+                return redirect(reverse('main:home'))
             else:
                 return HttpResponse("Your RMCM account is disabled.")
         else:
             print(f"Invalid login details: {username}, {password}")
             return HttpResponse("Invalid login details supplied.")
     else:
-        return render(request, 'rateMyCodingMistakes/login.html')
+        return render(request, 'main/login.html')
     
 @login_required
 def user_logout(request):
@@ -99,12 +99,14 @@ def hot(request):
     return response
 
 def alltime(request):
-    context_dict = {'category':'All Time'}
+    post_list = Post.objects.order_by('-rating')
+    context_dict = {'category':'All Time', 'posts':post_list}
     response = render(request, 'main/category.html', context=context_dict)
     return response
 
 def new(request):
-    context_dict = {'category':'New'}
+    post_list = Post.objects.order_by('-date')
+    context_dict = {'category':'New', 'posts':post_list}
     response = render(request, 'main/category.html', context=context_dict)
     return response
 
@@ -121,7 +123,7 @@ def show_categories(request):
     response = render(request, 'main/categories.html', context_dict)
     return response
 
-def show_category(request):
+def show_category(request, category_name_slug):
     context_dict = {}
     try:
         category = Category.objects.get(slug=category_name_slug)

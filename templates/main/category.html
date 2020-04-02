@@ -4,5 +4,18 @@
 {% block title_block %}Posts by {{ category }}{% endblock %}
 
 {% block body_block %}
-	{{ category }} posts will be listed here
+	{% if posts %}
+	<ul class="category_display">
+		{% for post in posts %}
+			<li>
+				<p class="title">{{ post.title }}</p>
+				<p class="right">{{ post.rating }} up-rates</p>
+				<img src="{{ MEDIA_URL }}{{ post.image }}" alt="Picture not found"/>
+				<p class="small">Post made by {{ post.op.user.username }} on {{ post.date }}</p>
+			</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+		Here would usually be {{ category }} posts
+	{% endif %}
 {% endblock %}
