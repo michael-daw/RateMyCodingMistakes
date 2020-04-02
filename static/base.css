@@ -1,8 +1,8 @@
 #logo{
 	margin-left: -250px;
 	margin-top: -50px;
-	height: 175px;
-	width: 175px;
+	height: 130px;
+	width: 225px;
 }
 
 .footer {
@@ -26,19 +26,22 @@
 	margin-right: 75px;
 	margin-left: 300px;
 	margin-bottom: 100px;
-	border: 2px solid black;
 }
 
 .header ul {
 	list-style-type: none;
-	margin-top: -100px;
+	margin-top: -65px;
 	margin-bottom: 25px;
-	margin-left: 50px;
+	margin-left: -10px;
 }
 
 .header li {
-	margin: 50px;
+	padding:55px;
+	padding-top: 25px;
+	padding-bottom: 25px;
 	display: inline;
+	border: 2px solid black;
+	box-shadow: 5px 5px;
 }
 
 .footer_links {

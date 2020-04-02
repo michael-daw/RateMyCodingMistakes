@@ -16,5 +16,6 @@ urlpatterns = [
     path('new/', views.new, name='new'),
     path('alltime/', views.alltime, name='alltime'),
     path('categories/', views.show_categories, name='categories'),
+    path('categories/<slug:category_name_slug>', views.show_category, name='show_category'),
     path('sitemap/', views.sitemap, name='sitemap'),
 ]

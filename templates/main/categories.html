@@ -10,14 +10,14 @@
                     {% if c == current_category %}
                         <li>
                             <strong>
-                                <a href="{% url 'rateMyCodingMistakes:show_category' c.slug %}">
+                                <a href="{% url 'main:show_category' c.slug %}">
                                     {{ c.name }}
                                 </a>
                             </strong>
                         </li>
                     {% else %}
                         <li>
-                            <a href="{% url 'rateMyCodingMistakes:show_category' c.slug %}">
+                            <a href="{% url 'main:show_category' c.slug %}">
                                 {{ c.name }}
                             </a>
                         </li>

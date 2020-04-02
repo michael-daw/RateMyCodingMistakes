@@ -123,7 +123,7 @@ def show_categories(request):
     response = render(request, 'main/categories.html', context_dict)
     return response
 
-def show_category(request):
+def show_category(request, category_name_slug):
     context_dict = {}
     try:
         category = Category.objects.get(slug=category_name_slug)
