@@ -7,7 +7,7 @@ import enum
 class Category(models.Model):
     
     NAME_MAX_LENGTH = 128
-    name = models.CharField(max_length=NAME_MAX_LENGTH, unique=True)
+    name = models.CharField(max_length=NAME_MAX_LENGTH, unique=True, primary_key=True)
     slug = models.SlugField(unique=True)
     
     def save(self, *args, **kwargs):
@@ -28,14 +28,14 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=TITLE_MAX_LENGTH)
     body = models.CharField(max_length=POST_MAX_LENGTH)
-    op = models.ForeignKey(User, on_delete=models.CASCADE)
+    op = models.ForeignKey('UserProfile', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='post_images', blank=True)
     date = models.DateTimeField(default=datetime.now)
     rating = models.IntegerField(default=0)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(primary_key=True)
     
     def save(self, *args, **kwargs):
-        self.slug - slugify(self.name)
+        self.slug = slugify(self.title)
         super(Post, self).save(*args, **kwargs)
     
     class Meta:
@@ -48,13 +48,8 @@ class Comment(models.Model):
     pass
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    '''
-    #subclass enum for choice of two experience types - student and professional
-    class ExpChoice(models.TextChoices):
-        STUDENT = 'STU'
-        PROFESSIONAL = 'PRO'
-    '''
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+
     STUDENT = 'STU'
     PROFESSIONAL = 'PRO'
     
