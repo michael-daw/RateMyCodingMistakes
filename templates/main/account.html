@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}My account{% endblock %}
+
+{% block body_block %}
+	<p>You have reached this page and have logged in successfully</p>
+	
+	{{ user.username }}
+	
+	<a href="{% url 'main:logout' %}">Click here to log out</a>
+{% endblock %}
