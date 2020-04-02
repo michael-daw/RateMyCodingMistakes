@@ -8,5 +8,20 @@
 	
 	{{ user.username }}
 	
+	{% if posts %}
+		<ul>
+		{% for post in posts %}
+			<li>
+				<p class="title">{{ post.title }}</p>
+				<p class="right">{{ post.rating }} up-rates</p>
+				<img src="{{ MEDIA_URL }}{{ post.image }}" alt="Picture not found"/>
+				<p class="small">Post made by {{ post.op.user.username }} on {{ post.date }}</p>
+			</li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<p>You have yet to post anything</p>
+	{% endif %}
+	
 	<a href="{% url 'main:logout' %}">Click here to log out</a>
 {% endblock %}

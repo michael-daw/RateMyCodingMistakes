@@ -8,7 +8,8 @@ from main.models import Category, Post, UserProfile
 from django.contrib.auth.models import User
 
 def populate():
-    user = add_user(User.objects.create_user(username='test_user'))
+    user = User.objects.create_user(username='test_user')
+    add_user(user)
     
     python_posts = [
         {'title': 'post #1 python',
@@ -74,7 +75,6 @@ def add_category(name):
 def add_user(username):
     u = UserProfile.objects.get_or_create(user=username)[0]
     u.save()
-    return u
 
 if __name__ == '__main__':
     print('Starting Rate My Coding Mistakes population script...')
