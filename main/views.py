@@ -6,7 +6,7 @@ from main.forms import UserForm, UserProfileForm
 from main.models import Post, Category
 from django.shortcuts import redirect
 from django.urls import reverse
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Create your views here.
 def home(request):
@@ -94,7 +94,8 @@ def register(request):
     return response
 
 def hot(request):
-    context_dict = {'category':'Hot'}
+    post_list = Post.objects.filter(date__range=[datetime.now()-timedelta(days=2), datetime.now()]).order_by('-rating')
+    context_dict = {'category':'Hot', 'posts':post_list}
     response = render(request, 'main/category.html', context=context_dict)
     return response
 
