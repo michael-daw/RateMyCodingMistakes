@@ -5,6 +5,39 @@
 	width: 225px;
 }
 
+.right {
+	float: right;
+	display: inline;
+}
+
+.small {
+	position: relative;
+	font-size: 10px;
+	margin-bottom: -15px;
+}
+
+.title {
+	font-size: 20px;
+	margin-top: -15px;
+	display: inline;
+}
+
+.category_display {
+	list-style-type: none;
+	overflow: hidden;
+}
+
+.category_display li{
+	padding: 20px;
+	border: 1px solid black;
+	margin: 10px;
+}
+
+.category_display img{
+	display: block;
+	max-width: 1150px;
+}
+
 .footer {
 	margin-left: 50px;
 	margin-right: 50px;

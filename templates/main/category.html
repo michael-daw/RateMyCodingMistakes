@@ -5,9 +5,16 @@
 
 {% block body_block %}
 	{% if posts %}
+	<ul class="category_display">
 		{% for post in posts %}
-			<li>{{ post.title }}{{ post.rating }}</li>
+			<li>
+				<p class="title">{{ post.title }}</p>
+				<p class="right">{{ post.rating }} up-rates</p>
+				<img src="{{ MEDIA_URL }}{{ post.image }}" alt="Picture not found"/>
+				<p class="small">Post made by {{ post.op.user.username }} on {{ post.date }}</p>
+			</li>
 		{% endfor %}
+	</ul>
 	{% else %}
 		Here would usually be {{ category }} posts
 	{% endif %}
