@@ -191,6 +191,20 @@ def show_category(request, category_name_slug):
     return response
     
 '''
+Function to display a full post
+'''
+def show_post(request, category_name_slug, post_slug):
+    context_dict = {}
+    try:
+        post = Post.objects.get(slug=post_slug)
+        context_dict['post'] = post
+    except Post.DoesNotExist:
+        context_dict['post'] = None
+        
+    response = render(request, 'main/post.html', context_dict)
+    return response
+ 
+'''
 Following functions deal with cookie handling
 '''
 

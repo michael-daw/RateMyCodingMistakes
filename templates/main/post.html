@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}{{ post.title }}{% endblock %}
+
+{% block body_block %}
+	{% if post %} <!-- If post passed in correctly/post exists in database -->
+	<ul class="category_display">
+		<li>
+			<p class="title">{{ post.title }}</p>
+			<p class="right">{{ post.rating }} up-rates</p>
+			<img src="{{ MEDIA_URL }}{{ post.image }}" alt="Picture not found"/>
+			<p>{{ post.body }}</p>
+			<p class="small">Post made by {{ post.op.user.username }} on {{ post.date }}. Post made in {{ post.category.name }}</p>
+		</li>
+	</ul>
+	{% else %}<!-- Error message if post not found -->
+		Something went wrong - post not found
+	{% endif %}
+{% endblock %}

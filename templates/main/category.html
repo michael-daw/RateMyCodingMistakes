@@ -10,12 +10,14 @@
 	{% if posts %} <!-- If list of posts passed in correctly/post exist in database -->
 	<ul class="category_display">
 		{% for post in posts %}
+		<a href="{% url 'main:show_post' post.category.slug post.slug %}" class="post_link">
 			<li>
 				<p class="title">{{ post.title }}</p>
 				<p class="right">{{ post.rating }} up-rates</p>
 				<img src="{{ MEDIA_URL }}{{ post.image }}" alt="Picture not found"/>
 				<p class="small">Post made by {{ post.op.user.username }} on {{ post.date }}</p>
 			</li>
+		</a>
 		{% endfor %}
 	</ul>
 	{% else %}<!-- Error message if posts not found -->
