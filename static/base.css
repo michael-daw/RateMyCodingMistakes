@@ -66,6 +66,11 @@
 	margin-bottom: 100px;
 }
 
+.header_link {
+	color: black;
+	text-decoration: none;
+}
+
 .header ul {
 	list-style-type: none;
 	margin-top: -65px;

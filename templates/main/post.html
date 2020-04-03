@@ -11,7 +11,7 @@
 			<p class="right">{{ post.rating }} up-rates</p>
 			<img src="{{ MEDIA_URL }}{{ post.image }}" alt="Picture not found"/>
 			<p>{{ post.body }}</p>
-			<p class="small">Post made by {{ post.op.user.username }} on {{ post.date }}. Post made in {{ post.category.name }}</p>
+			<p class="small">Post made by {{ post.op.user.username }} on {{ post.date }}. Post made in {{ post.category.name }} category.</p>
 		</li>
 	</ul>
 	{% else %}<!-- Error message if post not found -->
