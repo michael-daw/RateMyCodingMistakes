@@ -6,6 +6,7 @@
 {% block title_block %}Posts by {{ category }}{% endblock %}
 
 {% block body_block %}
+	<h2>{{ category.name }}</h2>
 	<!-- Display posts from specified category -->
 	{% if posts %} <!-- If list of posts passed in correctly/post exist in database -->
 	<ul class="category_display">
@@ -21,6 +22,6 @@
 		{% endfor %}
 	</ul>
 	{% else %}<!-- Error message if posts not found -->
-		Here would usually be {{ category }} posts
+		Something went wrong in displaying posts or no posts exist for the category
 	{% endif %}
 {% endblock %}

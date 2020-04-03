@@ -4,9 +4,11 @@
 {% block title_block %}Categories{% endblock %}
 
 {% block body_block %}
+	<h2>Currently used categories</h2>
+	<p>Click any of the links below to view posts in specific areas</p>
+	<p>Here you can search for specific language categories, for when you want to feel secure in the knowledge that you are better than someone else at your language of choice</p>
 	<ul>
         {% if categories %}
-			<p>Here you can search for specific language categories, for when you want to feel secure in the knowledge that you are better than someone else at your language of choice</p>
             <!--Display a list of currently used categories-->
 			{% for c in categories %}
 				<li>
