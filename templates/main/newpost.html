@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}Make a New Post{% endblock %}
+
+{% block body_block %}
+	{% if posted %}
+		Post successful
+		<a href="{% url 'main:account' %}">Back to your account</a>
+	{% else %}
+		<form id="PostForm" method="post" action="{% url 'main:new_post' %}" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ post_form.as_p }}
+			<input type="submit" name="submit" value="Post" />
+		</form>
+	{% endif %}
+{% endblock %}

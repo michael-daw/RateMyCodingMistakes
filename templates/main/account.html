@@ -4,12 +4,13 @@
 {% block title_block %}My account{% endblock %}
 
 {% block body_block %}
+	<h2>Welcome to your account page</h2>
 	<p>You have reached this page and have logged in successfully</p>
-	
-	{{ user.username }}
+	<a href="{% url 'main:new_post' %}">Click here to post something</a>
 	
 	{% if posts %}
-		<ul>
+		<h2>Posts by {{ user.username }}</h2>
+		<ul class="category_display">
 		{% for post in posts %}
 			<li>
 				<p class="title">{{ post.title }}</p>

@@ -11,6 +11,7 @@ urlpatterns = [
     path('account/login/', views.user_login, name='login'),
     path('account/signup/', views.register, name='register'),
     path('account/logout/', views.user_logout, name='logout'),
+    path('account/new_post', views.new_post, name='new_post'),
     path('hot/', views.hot, name='hot'),
     path('new/', views.new, name='new'),
     path('alltime/', views.alltime, name='alltime'),

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from main.forms import UserForm, UserProfileForm
+from main.forms import UserForm, UserProfileForm, PostForm
 from main.models import Post, Category, UserProfile
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -77,6 +77,30 @@ def user_logout(request):
     logout(request)
     response = render(request, 'main/home.html')
     return response
+
+@login_required
+def new_post(request):
+    posted = False
+    if request.method == 'POST':
+        post_form = PostForm(request.POST)
+        
+        if post_form.is_valid():
+            post = post_form.save(commit = False)
+            post.op = request.user
+            post.save()
+            posted=True
+        else:
+            print(post_form.errors)
+    else:
+        post_form = PostForm()
+        
+    context_dict = {}
+    context_dict['post_form'] = post_form
+    context_dict['posted'] = posted
+    
+    response = render(request, 'main/newpost.html', context_dict)
+    return response
+    
 
 def register(request):
     registered = False

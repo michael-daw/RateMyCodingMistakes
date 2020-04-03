@@ -13,3 +13,8 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('experience',)
+        
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        exclude = ('op','date','rating','slug',)
