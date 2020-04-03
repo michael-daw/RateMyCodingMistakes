@@ -17,5 +17,6 @@ urlpatterns = [
     path('alltime/', views.alltime, name='alltime'),
     path('categories/', views.show_categories, name='categories'),
     path('categories/<slug:category_name_slug>', views.show_category, name='show_category'),
+    path('categories/<slug:category_name_slug>/<slug:post_slug>', views.show_post, name='show_post'),
     path('sitemap/', views.sitemap, name='sitemap'),
 ]

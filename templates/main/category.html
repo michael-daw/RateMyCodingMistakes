@@ -6,19 +6,22 @@
 {% block title_block %}Posts by {{ category }}{% endblock %}
 
 {% block body_block %}
+	<h2>{{ category.name }}</h2>
 	<!-- Display posts from specified category -->
 	{% if posts %} <!-- If list of posts passed in correctly/post exist in database -->
 	<ul class="category_display">
 		{% for post in posts %}
+		<a href="{% url 'main:show_post' post.category.slug post.slug %}" class="post_link">
 			<li>
 				<p class="title">{{ post.title }}</p>
 				<p class="right">{{ post.rating }} up-rates</p>
 				<img src="{{ MEDIA_URL }}{{ post.image }}" alt="Picture not found"/>
-				<p class="small">Post made by {{ post.op.user.username }} on {{ post.date }}</p>
+				<p class="small">Post made by {{ post.op.user.username }} on {{ post.date }}. Posted in {{ post.category.name }} category.</p>
 			</li>
+		</a>
 		{% endfor %}
 	</ul>
 	{% else %}<!-- Error message if posts not found -->
-		Here would usually be {{ category }} posts
+		Something went wrong in displaying posts or no posts exist for the category
 	{% endif %}
 {% endblock %}

@@ -4,6 +4,7 @@
 {% block title_block %}Make a New Post{% endblock %}
 
 {% block body_block %}
+	<h2>New Post:</h2>
 	{% if posted %}
 		Post successful
 		<a href="{% url 'main:account' %}">Back to your account</a>

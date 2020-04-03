@@ -140,19 +140,19 @@ hot shows highest rated posts over a period of 2 days
 '''
 
 def hot(request):
-    post_list = Post.objects.filter(date__range=[datetime.now()-timedelta(days=2), datetime.now()]).order_by('-rating')
+    post_list = Post.objects.filter(date__range=[datetime.now()-timedelta(days=2), datetime.now()]).order_by('-rating')[:10]
     context_dict = {'category':'Hot', 'posts':post_list}
     response = render(request, 'main/category.html', context=context_dict)
     return response
 
 def alltime(request):
-    post_list = Post.objects.order_by('-rating')
+    post_list = Post.objects.order_by('-rating')[:10]
     context_dict = {'category':'All Time', 'posts':post_list}
     response = render(request, 'main/category.html', context=context_dict)
     return response
 
 def new(request):
-    post_list = Post.objects.order_by('-date')
+    post_list = Post.objects.order_by('-date')[:10]
     context_dict = {'category':'New', 'posts':post_list}
     response = render(request, 'main/category.html', context=context_dict)
     return response
@@ -190,6 +190,20 @@ def show_category(request, category_name_slug):
     response = render(request, 'main/category.html', context_dict)
     return response
     
+'''
+Function to display a full post
+'''
+def show_post(request, category_name_slug, post_slug):
+    context_dict = {}
+    try:
+        post = Post.objects.get(slug=post_slug)
+        context_dict['post'] = post
+    except Post.DoesNotExist:
+        context_dict['post'] = None
+        
+    response = render(request, 'main/post.html', context_dict)
+    return response
+ 
 '''
 Following functions deal with cookie handling
 '''
