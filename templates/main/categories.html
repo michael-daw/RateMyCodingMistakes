@@ -7,23 +7,14 @@
 	<ul>
         {% if categories %}
 			<p>Here you can search for specific language categories, for when you want to feel secure in the knowledge that you are better than someone else at your language of choice</p>
-            {% for c in categories %}
-                    {% if c == current_category %}
-                        <li>
-                            <strong>
-                                <a href="{% url 'main:show_category' c.slug %}">
-                                    {{ c.name }}
-                                </a>
-                            </strong>
-                        </li>
-                    {% else %}
-                        <li>
-                            <a href="{% url 'main:show_category' c.slug %}">
-                                {{ c.name }}
-                            </a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
+            <!--Display a list of currently used categories-->
+			{% for c in categories %}
+				<li>
+					<a href="{% url 'main:show_category' c.slug %}">
+						{{ c.name }}
+					</a>
+				</li>
+			{% endfor %}
+		{% endif %}
     </ul>
 {% endblock %}

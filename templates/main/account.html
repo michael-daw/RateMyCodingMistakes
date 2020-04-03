@@ -4,9 +4,25 @@
 {% block title_block %}My account{% endblock %}
 
 {% block body_block %}
+	<h2>Welcome to your account page</h2>
 	<p>You have reached this page and have logged in successfully</p>
+	<a href="{% url 'main:new_post' %}">Click here to post something</a>
 	
-	{{ user.username }}
+	{% if posts %}
+		<h2>Posts by {{ user.username }}</h2>
+		<ul class="category_display">
+		{% for post in posts %}
+			<li>
+				<p class="title">{{ post.title }}</p>
+				<p class="right">{{ post.rating }} up-rates</p>
+				<img src="{{ MEDIA_URL }}{{ post.image }}" alt="Picture not found"/>
+				<p class="small">Post made by {{ post.op.user.username }} on {{ post.date }}</p>
+			</li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<p>You have yet to post anything</p>
+	{% endif %}
 	
 	<a href="{% url 'main:logout' %}">Click here to log out</a>
 {% endblock %}

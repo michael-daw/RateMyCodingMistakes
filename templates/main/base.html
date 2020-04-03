@@ -14,6 +14,7 @@
 	</head>
 	</body>
 		<div class="header">
+			<!--Block for displaying header links, logo-->
 			{% block header_block %}
 				<a href="{% url 'main:home' %}">
 					<img src="{% static 'images/logo.png' %}" alt="Home" id="logo" />
@@ -32,11 +33,13 @@
 			{% endblock %}
 		</div>
 		<div class="body">
+			<!--Block where content will be filled by templates-->
 			{% block body_block %}
 				<p>Empty body block</p>
 			{% endblock %}
 		</div>
 		<div class="footer">
+			<!--Block for diplaying footer links-->
 			{% block footer_block %}
 				<ul class="footer_links">
 					<li><a href="{% url 'main:about' %}">About us</a></li>

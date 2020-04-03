@@ -1,10 +1,13 @@
 {% extends 'main/base.html' %}
 {% load staticfiles %}
 
+<!-- Page to view posts filtered by specific category -->
+
 {% block title_block %}Posts by {{ category }}{% endblock %}
 
 {% block body_block %}
-	{% if posts %}
+	<!-- Display posts from specified category -->
+	{% if posts %} <!-- If list of posts passed in correctly/post exist in database -->
 	<ul class="category_display">
 		{% for post in posts %}
 			<li>
@@ -15,7 +18,7 @@
 			</li>
 		{% endfor %}
 	</ul>
-	{% else %}
+	{% else %}<!-- Error message if posts not found -->
 		Here would usually be {{ category }} posts
 	{% endif %}
 {% endblock %}
